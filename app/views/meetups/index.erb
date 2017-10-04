@@ -1,0 +1,32 @@
+<h1>Meetups</h1>
+
+<h2> <%= @error %></h2>
+<h3> <%= @form_error %></h3>
+<% if @meetups %>
+
+<ul>
+  <% @meetups.each do |meetup|%>
+  <p>
+    <a href="http://localhost:4567/meetups/<%= meetup.id%>"><%= meetup.name%></a>
+  </p>
+    <% end %>
+</ul>
+
+<% else %>
+
+<p> there are no meetups!</p>
+
+<% end %>
+
+<form action="/meetups" method="POST">
+  <label for="name">Meetup Name</label>
+  <input type="text" name="name" value=<%=params[:name]%>>
+
+  <label for="location">Location</label>
+  <input type="text" name="location" value=<%=params[:location]%>><br>
+
+  <label for="description">Description</label>
+  <input type="text" name="description" value=<%=params[:description]%>>
+
+  <button type="submit">Submit</button>
+</form>
