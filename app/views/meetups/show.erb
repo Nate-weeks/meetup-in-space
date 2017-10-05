@@ -6,3 +6,20 @@
   <%= @meetup.location %><br>
   <%= @meetup.creator_id %>
  </p>
+
+ <h1> Meetup attendees </h1>
+ <p> <%= @error %>
+ <ul>
+   <% if @meetup_users %>
+   <% @meetup_users.where(meetup_id: params[:id]).each do |meetup| %>
+    <li><%= meetup.username %></li>
+    <% end %>
+    <% end %>
+
+ </ul>
+
+<form action="/meetups/<%=params[:id]%>" method="post">
+  <input type="hidden" name="meetup_id" value=" <%=params[:id]%>">
+
+ <button class="button" type="submit" name="join">Join</button>
+ </form>

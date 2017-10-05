@@ -4,6 +4,15 @@ body {
   color: #FFFFFF;
 }
 
+.form{
+  color: black;
+}
+
+.button {
+  font-size: 30px;
+
+}
+
 a,
 a:visited {
   color: #FFFFFF;

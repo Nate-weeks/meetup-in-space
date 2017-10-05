@@ -65,3 +65,27 @@ get '/meetups/:id' do
   @meetup = Meetup.find_by(id: params[:id])
   erb :'meetups/show'
 end
+
+post '/meetups/:id' do
+  @error = ""
+  # @current_meetup_users = UserMeetup.all
+  # binding.pry
+  # if @current_meetup_users.find_by(meetup_id: params[:id]).user_id
+  #   if current_user.username == @current_meetup_users.find_by(meetup_id: params[:id]).user_id
+  #     @error = "youve already signed up for this group!"
+  #     @meetup = Meetup.find_by(id: params[:id])
+  #     erb :'meetups/show'
+  #   else
+    if current_user
+      new_user_meetup = UserMeetup.create(username: current_user.username, meetup_id: params[:id])
+      @meetup_users = UserMeetup.all
+      @meetup = Meetup.find_by(id: params[:id])
+      erb :'meetups/show'
+    else
+      @error = "you aren't signed in"
+      @meetup = Meetup.find_by(id: params[:id])
+      erb :'meetups/show'
+    end
+  
+
+end
